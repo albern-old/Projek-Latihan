@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // REGISTER FORM
   const registerForm = document.getElementById("registerForm");
   if (registerForm) {
     registerForm.addEventListener("submit", function (e) {
@@ -10,8 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
       const registerErrorMessage = document.getElementById("register-error-message");
 
       if (!username || !password) {
-        registerErrorMessage.textContent = "Semua field harus diisi.";
-        return;
+        registerErrorMessage.textContent =
+d    return;
       }
 
       if (localStorage.getItem(username)) {
@@ -27,7 +26,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // LOGIN FORM
   const loginForm = document.getElementById("loginForm");
   if (loginForm) {
     loginForm.addEventListener("submit", function (e) {
@@ -60,7 +58,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // DASHBOARD PAGE CHECK & LOGOUT
   if (window.location.pathname.endsWith("dashboard.html")) {
     const loggedInUser = localStorage.getItem("loggedInUser");
     if (!loggedInUser) {
@@ -74,7 +71,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// Fungsi logout harus di global scope agar bisa dipanggil dari tombol di dashboard.html
 function logout() {
   localStorage.removeItem("loggedInUser");
   window.location.href = "login.html";
