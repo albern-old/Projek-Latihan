@@ -16,7 +16,6 @@
   </div>
 
   <script>
-    // Cek apakah ada user yang login
     const loggedInUser = localStorage.getItem("loggedInUser");
     if (!loggedInUser) {
       window.location.href = "login.html";
@@ -24,7 +23,6 @@
       document.querySelector(".dashboard-container header h1").textContent = `Selamat datang, ${loggedInUser}!`;
     }
 
-    // Fungsi logout hapus loggedInUser dan redirect ke login
     function logout() {
       localStorage.removeItem("loggedInUser");
       window.location.href = "login.html";
