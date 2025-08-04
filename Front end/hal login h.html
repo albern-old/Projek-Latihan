@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login</title>
+  <link rel="stylesheet" href="hal login c.css" />
+</head>
+<body>
+  <div class="form-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="email" placeholder="Email" required />
+      <input type="password" placeholder="Password" required />
+      <div id="loginMessage" class="message"></div>
+      <button type="submit">Masuk</button>
+    </form>
+    <p>Belum punya akun? <a href="hal daftar.html">Daftar di sini</a></p>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const email = this.querySelector('input[type="email"]').value;
+      const password = this.querySelector('input[type="password"]').value;
+      const messageBox = document.getElementById("loginMessage");
+
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      const user = users.find(u => u.email === email && u.password === password);
+
+      if (user) {
+        messageBox.textContent = "Login berhasil! Mengarahkan ke halaman...";
+        messageBox.className = "message success";
+
+        setTimeout(() => {
+          window.location.href = "Anggartivasi.html";
+        }, 1500);
+      } else {
+        messageBox.textContent = "Email atau password salah!";
+        messageBox.className = "message error";
+      }
+    });
+  </script>
+</body>
+</html>

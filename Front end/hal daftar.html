@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Daftar</title>
+  <link rel="stylesheet" href="hal login c.css" />
+</head>
+<body>
+  <div class="form-container">
+    <h2>Daftar</h2>
+    <form id="daftarForm">
+      <input type="text" placeholder="Nama Lengkap" required />
+      <input type="email" placeholder="Email" required />
+      <input type="password" placeholder="Password" required />
+      <div id="daftarMessage" class="message"></div>
+      <button type="submit">Daftar</button>
+    </form>
+    <p>Sudah punya akun? <a href="hal login h.html">Login di sini</a></p>
+  </div>
+
+  <script>
+    document.getElementById("daftarForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const nama = this.querySelector('input[type="text"]').value;
+      const email = this.querySelector('input[type="email"]').value;
+      const password = this.querySelector('input[type="password"]').value;
+      const messageBox = document.getElementById("daftarMessage");
+
+      let users = JSON.parse(localStorage.getItem("users")) || [];
+
+      if (users.some(u => u.email === email)) {
+        messageBox.textContent = "Email sudah terdaftar!";
+        messageBox.className = "message error";
+        return;
+      }
+
+      users.push({ nama, email, password });
+      localStorage.setItem("users", JSON.stringify(users));
+
+      messageBox.textContent = "Pendaftaran berhasil! Silakan login.";
+      messageBox.className = "message success";
+
+      setTimeout(() => {
+        window.location.href = "Anggartivasi";
+      }, 1500);
+    });
+  </script>
+</body>
+</html>
